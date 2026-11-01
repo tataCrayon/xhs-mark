@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>红笺 · 管理页原型</title>
+<meta name="description" content="小红书页面整理器的管理页原型：左侧是带预览的领域、方向、账号、笔记四级树，右侧是账号详情与收藏的笔记。">
+<link rel="stylesheet" href="./app.css">
+<link rel="stylesheet" href="./manager.css">
+<script src="./manager.js" defer></script>
+</head>
+<body class="page manager-page">
+
+<header class="topbar">
+  <p class="brand">红笺</p>
+  <span class="topbar__spacer"></span>
+  <div class="search">
+    <label class="visually-hidden" for="q-page">搜索账号、笔记或批注</label>
+    <svg class="search__icon" viewBox="0 0 16 16" aria-hidden="true">
+      <circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+      <path d="M10.4 10.4 L14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+    </svg>
+    <input class="search__input" id="q-page" type="search" placeholder="搜索账号、笔记或批注" autocomplete="off">
+  </div>
+  <button class="btn btn--quiet" type="button">导入 JSON</button>
+  <button class="btn btn--quiet" type="button">导出 JSON</button>
+  <button class="icon-btn" type="button" aria-label="设置">
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <circle cx="8" cy="8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"></circle>
+      <path d="M8 1.8v1.6M8 12.6v1.6M14.2 8h-1.6M3.4 8H1.8M12.5 3.5l-1.1 1.1M4.6 11.4l-1.1 1.1M12.5 12.5l-1.1-1.1M4.6 4.6L3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+    </svg>
+  </button>
+</header>
+
+<div class="workbench">
+
+  <section class="workbench__tree" aria-label="小红书页面导航">
+
+    <details class="quickadd quickadd--compact">
+      <summary>
+        <span class="quickadd__summary-icon" aria-hidden="true">+</span>
+        <span><strong>快速添加账号</strong><small>粘贴主页链接，归到一个方向</small></span>
+      </summary>
+      <form class="quickadd__form" data-endpoint="" novalidate>
+        <div class="quickadd__row">
+          <label class="visually-hidden" for="qa-url">小红书主页链接或小红书号</label>
+          <input class="input" id="qa-url" name="qa-url" type="text" placeholder="主页链接或小红书号" autocomplete="off">
+          <button class="btn" type="submit">添加</button>
+        </div>
+        <div class="quickadd__row">
+          <label class="field__label" for="qa-dest">归到</label>
+          <select class="input" id="qa-dest" name="qa-dest">
+            <option>串珠领域 / 做手链的</option>
+            <option>串珠领域 / 蓝色水晶</option>
+            <option>串珠领域 / 中国风</option>
+            <option>串珠领域 / ins 风</option>
+            <option>串珠领域 / 水晶运营</option>
+          </select>
+        </div>
+        <p class="field__help">收藏后自动挂到树上，数据只存在本地。</p>
+      </form>
+    </details>
+
+    <section class="tree-card navigator" aria-labelledby="navigator-title">
+      <header class="navigator__head">
+        <div>
+          <h2 class="navigator__title" id="navigator-title">内容导航</h2>
+          <p class="navigator__path">领域 → 方向 → 账号 → 笔记</p>
+        </div>
+        <button class="navigator__action" type="button" data-collapse-all>全部收起</button>
+      </header>
+      <div class="navigator__summary">
+        <strong>10 篇笔记</strong>
+        <span>8 个账号 · 7 个方向</span>
+        <span class="navigator__preview-hint">封面预览</span>
+      </div>
+
+      <ul class="tree" role="tree" aria-label="小红书页面树">
+
+        <li role="treeitem" aria-expanded="true">
+          <div class="node node--domain">
+            <button class="node__twisty" type="button" aria-expanded="true" aria-label="折叠 串珠领域">
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+            <button class="node__select" type="button" data-select="domain" data-name="串珠领域" data-count="7" data-path="串珠领域 / 串珠领域" aria-label="查看 串珠领域的 7 篇笔记">
+              <span class="node__label"><span class="node__name">串珠领域</span><span class="node__meta">5 个方向 · 7 篇笔记</span></span>
+              <span class="node__peek">
+                <span class="thumb-stack" aria-hidden="true"><img src="./assets/img/note-zhenzhu.jpg" alt="" width="28" height="36"><img src="./assets/img/note-lanjing.jpg" alt="" width="28" height="36"><img src="./assets/img/note-baiyu.jpg" alt="" width="28" height="36"></span>
+                <span class="node__peek-copy"><strong>刚刚收藏</strong><span>一串珍珠，配绳换了两次</span></span>
+              </span>
+            </button>
+          </div>
+          <ul role="group">
+
+            <li role="treeitem" aria-expanded="true">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="true" aria-label="折叠 做手链的">
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+                <button class="node__select" type="button" data-select="direction" data-name="做手链的" data-count="5" data-path="串珠领域 / 做手链的" aria-label="查看 做手链的的 5 篇笔记">
+                  <span class="node__label"><span class="node__name">做手链的</span><span class="node__meta">2 个账号 · 5 篇笔记</span></span>
+                  <span class="node__peek">
+                    <span class="thumb-stack" aria-hidden="true"><img src="./assets/img/avatar-huapu.jpg" alt="" width="24" height="24"><img src="./assets/img/avatar-baiyu.jpg" alt="" width="24" height="24"></span>
+                    <span class="node__peek-copy"><strong>最近活跃</strong><span>花扑HUAPU</span></span>
+                  </span>
+                </button>
+              </div>
+              <ul role="group">
+
+                <li role="treeitem" aria-expanded="true">
+                  <div class="node node--account is-selected">
+                    <button class="node__twisty" type="button" aria-expanded="true" aria-label="折叠 花扑HUAPU 的笔记">
+                      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </button>
+                    <button class="node__select" type="button" data-select="account" data-name="花扑Huapu" data-count="6" data-path="串珠领域 / 做手链的 / 花扑Huapu" aria-current="true" aria-label="查看 花扑Huapu 的 6 篇笔记">
+                      <img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="32" height="32">
+                      <span class="node__label"><span class="node__name">花扑<small class="brand-suffix">Huapu</small></span><span class="node__meta"><i class="status-dot" aria-hidden="true"></i>2 个标签页 · 6 篇笔记</span></span>
+                      <span class="node__peek"><span class="node__peek-copy"><strong>配色参考</strong><span>值得长期跟</span></span></span>
+                    </button>
+                  </div>
+                  <ul role="group">
+                    <li role="treeitem">
+                      <a class="node node--note" href="./reader.html">
+                        <img class="node__thumb" src="./assets/img/note-lanjing.jpg" alt="" width="32" height="42">
+                        <span class="node__label"><span class="node__name">安静的蓝调色 淡淡的天空蓝</span><span class="node__meta">配色参考 · 有批注</span></span>
+                        <span class="node__open" aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                    <li role="treeitem">
+                      <a class="node node--note" href="./reader.html">
+                        <img class="node__thumb" src="./assets/img/note-suyin.jpg" alt="" width="32" height="42">
+                        <span class="node__label"><span class="node__name">素银叠戴的两种戴法</span><span class="node__meta">待复刻 · 41 次收藏</span></span>
+                        <span class="node__open" aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                    <li role="treeitem">
+                      <a class="node node--note" href="./reader.html">
+                        <img class="node__thumb" src="./assets/img/note-baiyu.jpg" alt="" width="32" height="42">
+                        <span class="node__label"><span class="node__name">和田白玉配绳收尾</span><span class="node__meta">28 次收藏</span></span>
+                        <span class="node__open" aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                    <li role="treeitem">
+                      <a class="node node--note" href="./reader.html">
+                        <img class="node__thumb" src="./assets/img/note-yuan.jpg" alt="" width="32" height="42">
+                        <span class="node__label"><span class="node__name">蓝晶原矿开箱 这一批很干净</span><span class="node__meta">配色参考 · 93 次收藏</span></span>
+                        <span class="node__open" aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li role="treeitem">
+                  <div class="node node--account">
+                    <img class="node__avatar" src="./assets/img/avatar-baiyu.jpg" alt="" width="32" height="32">
+                    <button class="node__select" type="button" data-select="account" data-name="白玉小铺" data-count="3" data-path="串珠领域 / 做手链的 / 白玉小铺" aria-label="查看 白玉小铺的 3 篇笔记">
+                      <span class="node__label"><span class="node__name">白玉小铺</span><span class="node__meta">1 个标签页 · 3 篇笔记</span></span>
+                      <span class="node__peek"><span class="node__peek-copy"><strong>和田白玉</strong><span>昨天活跃</span></span></span>
+                    </button>
+                  </div>
+                </li>
+
+              </ul>
+            </li>
+
+            <li role="treeitem" aria-expanded="true">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="true" aria-label="折叠 蓝色水晶">
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+                <button class="node__select" type="button" data-select="direction" data-name="蓝色水晶" data-count="1" data-path="串珠领域 / 蓝色水晶" aria-label="查看 蓝色水晶的 1 篇笔记">
+                  <span class="node__label"><span class="node__name">蓝色水晶</span><span class="node__meta">1 个账号 · 1 篇笔记</span></span>
+                  <span class="node__peek">
+                    <span class="thumb-stack" aria-hidden="true"><img src="./assets/img/avatar-jing-shi.jpg" alt="" width="24" height="24"></span>
+                    <span class="node__peek-copy"><strong>晶石记事</strong><span>昨天更新</span></span>
+                  </span>
+                </button>
+              </div>
+              <ul role="group">
+                <li role="treeitem">
+                  <div class="node node--account">
+                    <img class="node__avatar" src="./assets/img/avatar-jing-shi.jpg" alt="" width="32" height="32">
+                    <button class="node__select" type="button" data-select="account" data-name="晶石记事" data-count="1" data-path="串珠领域 / 蓝色水晶 / 晶石记事" aria-label="查看 晶石记事的 1 篇笔记">
+                      <span class="node__label"><span class="node__name">晶石记事</span><span class="node__meta">1 篇笔记 · 昨天收藏</span></span>
+                      <span class="node__peek"><span class="node__peek-copy"><strong>原矿记录</strong><span>蓝晶</span></span></span>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li role="treeitem" aria-expanded="false">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 中国风">
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+                <button class="node__select" type="button" data-select="direction" data-name="中国风" data-count="1" data-path="串珠领域 / 中国风" aria-label="查看 中国风的 1 篇笔记">
+                  <span class="node__label"><span class="node__name">中国风</span><span class="node__meta">1 个账号 · 1 篇笔记</span></span>
+                  <span class="node__peek"><span class="thumb-stack" aria-hidden="true"><img src="./assets/img/note-chanhua.jpg" alt="" width="28" height="36"></span><span class="node__peek-copy"><strong>缠花手链</strong><span>做法拆解</span></span></span>
+                </button>
+              </div>
+              <ul role="group" hidden>
+                <li role="treeitem"><a class="node node--note" href="./reader.html"><img class="node__thumb" src="./assets/img/note-chanhua.jpg" alt="" width="32" height="42"><span class="node__label"><span class="node__name">缠花手链的做法拆解</span><span class="node__meta">青瓷杂货 · 昨天收藏</span></span><span class="node__open" aria-hidden="true">↗</span></a></li>
+              </ul>
+            </li>
+
+            <li role="treeitem" aria-expanded="false">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 ins 风">
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+                <button class="node__select" type="button" data-select="direction" data-name="ins 风" data-count="1" data-path="串珠领域 / ins 风" aria-label="查看 ins 风的 1 篇笔记">
+                  <span class="node__label"><span class="node__name">ins 风</span><span class="node__meta">1 个账号 · 1 篇笔记</span></span>
+                  <span class="node__peek"><span class="thumb-stack" aria-hidden="true"><img src="./assets/img/note-zijingshui.jpg" alt="" width="28" height="36"></span><span class="node__peek-copy"><strong>紫水晶</strong><span>一百种串法</span></span></span>
+                </button>
+              </div>
+              <ul role="group" hidden>
+                <li role="treeitem"><a class="node node--note" href="./reader.html"><img class="node__thumb" src="./assets/img/note-zijingshui.jpg" alt="" width="32" height="42"><span class="node__label"><span class="node__name">紫水晶的一百种串法</span><span class="node__meta">花扑HUAPU · 10 分钟前</span></span><span class="node__open" aria-hidden="true">↗</span></a></li>
+              </ul>
+            </li>
+
+            <li role="treeitem" aria-expanded="false">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 水晶运营">
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+                <button class="node__select" type="button" data-select="direction" data-name="水晶运营" data-count="1" data-path="串珠领域 / 水晶运营" aria-label="查看 水晶运营的 1 篇笔记">
+                  <span class="node__label"><span class="node__name">水晶运营</span><span class="node__meta">1 个账号 · 1 篇笔记</span></span>
+                  <span class="node__peek"><span class="node__peek-copy"><strong>运营笔记</strong><span>3 天前更新</span></span></span>
+                </button>
+              </div>
+              <ul role="group" hidden>
+                <li role="treeitem"><a class="node node--note" href="./reader.html"><img class="node__thumb" src="./assets/img/note-zhenzhu.jpg" alt="" width="32" height="42"><span class="node__label"><span class="node__name">水晶店铺的定价与陈列</span><span class="node__meta">运营参考 · 3 天前</span></span><span class="node__open" aria-hidden="true">↗</span></a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+
+        <li role="treeitem" aria-expanded="true">
+          <div class="node node--domain">
+            <button class="node__twisty" type="button" aria-expanded="true" aria-label="折叠 金融投资">
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+            <button class="node__select" type="button" data-select="domain" data-name="金融投资" data-count="3" data-path="串珠领域 / 金融投资" aria-label="查看 金融投资的 3 篇笔记">
+              <span class="node__label"><span class="node__name">金融投资</span><span class="node__meta">2 个方向 · 3 篇笔记</span></span>
+              <span class="node__peek"><span class="thumb-stack" aria-hidden="true"><img src="./assets/img/note-jingji.jpg" alt="" width="28" height="36"><img src="./assets/img/note-xiaofei.jpg" alt="" width="28" height="36"></span><span class="node__peek-copy"><strong>科技与消费</strong><span>2 个方向</span></span></span>
+            </button>
+          </div>
+          <ul role="group">
+            <li role="treeitem" aria-expanded="false">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 科技领域">
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+                <button class="node__select" type="button" data-select="direction" data-name="科技领域" data-count="2" data-path="金融投资 / 科技领域" aria-label="查看 科技领域的 2 篇笔记">
+                  <span class="node__label"><span class="node__name">科技领域</span><span class="node__meta">1 个账号 · 2 篇笔记</span></span>
+                  <span class="node__peek"><span class="thumb-stack" aria-hidden="true"><img src="./assets/img/note-jingji.jpg" alt="" width="28" height="36"></span><span class="node__peek-copy"><strong>科技观察</strong><span>2 篇笔记</span></span></span>
+                </button>
+              </div>
+              <ul role="group" hidden><li role="treeitem"><a class="node node--note" href="./reader.html"><img class="node__thumb" src="./assets/img/note-jingji.jpg" alt="" width="32" height="42"><span class="node__label"><span class="node__name">科技行业的年度观察</span><span class="node__meta">科技领域 · 2 篇笔记</span></span><span class="node__open" aria-hidden="true">↗</span></a></li></ul>
+            </li>
+            <li role="treeitem" aria-expanded="false">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 传统消费">
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+                <button class="node__select" type="button" data-select="direction" data-name="传统消费" data-count="1" data-path="金融投资 / 传统消费" aria-label="查看 传统消费的 1 篇笔记">
+                  <span class="node__label"><span class="node__name">传统消费</span><span class="node__meta">1 个账号 · 1 篇笔记</span></span>
+                  <span class="node__peek"><span class="thumb-stack" aria-hidden="true"><img src="./assets/img/note-xiaofei.jpg" alt="" width="28" height="36"></span><span class="node__peek-copy"><strong>消费笔记</strong><span>1 篇笔记</span></span></span>
+                </button>
+              </div>
+              <ul role="group" hidden><li role="treeitem"><a class="node node--note" href="./reader.html"><img class="node__thumb" src="./assets/img/note-xiaofei.jpg" alt="" width="32" height="42"><span class="node__label"><span class="node__name">传统消费品牌观察</span><span class="node__meta">传统消费 · 1 篇笔记</span></span><span class="node__open" aria-hidden="true">↗</span></a></li></ul>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+      <footer class="navigator__foot"><span><i class="status-dot" aria-hidden="true"></i>3 个账号正在浏览</span><span>点击名称查看内容</span></footer>
+    </section>
+
+    <section class="recents" aria-label="最近收藏">
+      <h2 class="recents__head">最近收藏 <a href="#recent-notes">查看全部</a></h2>
+      <ul class="recents__list">
+        <li><a class="recents__item" href="./reader.html"><img class="recents__thumb" src="./assets/img/note-zhenzhu.jpg" alt="" width="40" height="52"><span><span class="recents__title">一串珍珠，配绳换了两次</span><span class="recents__meta">花扑HUAPU · 刚刚</span></span><span class="recents__path">串珠 / 手链</span></a></li>
+        <li><a class="recents__item" href="./reader.html"><img class="recents__thumb" src="./assets/img/note-zijingshui.jpg" alt="" width="40" height="52"><span><span class="recents__title">紫水晶的一百种串法</span><span class="recents__meta">花扑HUAPU · 10 分钟前</span></span><span class="recents__path">串珠 / ins 风</span></a></li>
+        <li><a class="recents__item" href="./reader.html"><img class="recents__thumb" src="./assets/img/note-chanhua.jpg" alt="" width="40" height="52"><span><span class="recents__title">缠花手链的做法拆解</span><span class="recents__meta">青瓷杂货 · 昨天</span></span><span class="recents__path">串珠 / 中国风</span></a></li>
+      </ul>
+    </section>
+  </section>
+
+  <aside class="workbench__account" aria-label="账号详情" data-account-panel>
+    <section class="profile">
+      <a href="./reader.html" aria-label="在插件内打开 花扑HUAPU 的主页"><img class="avatar avatar--lg" src="./assets/img/avatar-huapu.jpg" alt="花扑HUAPU 的头像" width="96" height="96" data-account-avatar></a>
+      <div class="profile__id">
+        <p class="profile__path" data-account-path>串珠领域 / 做手链的</p>
+        <h2 class="profile__name"><a href="./reader.html" data-account-name>花扑HUAPU</a></h2>
+        <p class="profile__meta" data-account-meta>小红书号 lct0826 · IP属地 山东</p>
+      </div>
+      <p class="profile__bio" data-account-bio>独立设计生产，主打天然石与性价比。
+关注配色、配绳和日常叠戴灵感。</p>
+      <div class="tagrow"><span class="tag">处女座</span><span class="tag">珠宝设计师</span><span class="tag">时尚博主</span><button class="chip chip--ghost" type="button">加标签</button></div>
+      <div class="statrow" data-account-stats><div><b>306</b><span>关注</span></div><div><b>2万</b><span>粉丝</span></div><div><b>9.6万</b><span>点赞与收藏</span></div></div>
+    </section>
+
+    <section class="block" data-account-notes>
+      <h3 class="block__head">我给这个账号写的批注</h3>
+      <div class="field">
+        <label class="field__label" for="acct-note">账号批注</label>
+        <textarea class="input" id="acct-note" rows="3" data-account-note>配线留 2cm 余量这条要照抄。发货只等一天，价格是同类里最狠的。</textarea>
+        <span class="field__help">只存在这台浏览器里，不会上传，也不会发到小红书</span>
+      </div>
+      <div class="chips"><button class="chip" type="button" aria-pressed="true">值得长期跟</button><button class="chip" type="button">加标签</button></div>
+    </section>
+
+    <section class="block">
+      <h3 class="block__head">浏览器标签页</h3>
+      <dl class="titleswap"><div><dt>现在显示</dt><dd>小红书 - 你的生活兴趣社区</dd></div><div><dt>写入之后</dt><dd class="is-write" data-tab-title>花扑HUAPU · 安静的蓝调色</dd></div></dl>
+    </section>
+
+    <div class="profile__actions"><a class="btn" href="./reader.html">在插件内打开主页</a><button class="btn btn--quiet" type="button">聚焦标签页</button><button class="btn btn--quiet" type="button">收藏这个账号</button></div>
+  </aside>
+
+  <section class="workbench__notes" aria-label="收藏的笔记" id="recent-notes">
+    <p class="notes__context" data-selection-path>串珠领域 / 做手链的 / 花扑HUAPU</p>
+    <h1 class="notes__title" data-notes-title>花扑HUAPU 的笔记</h1>
+    <p class="notes__hint" data-notes-hint>6 篇收藏 · 最近有 2 个打开的标签页</p>
+
+    <div class="seg" role="group" aria-label="笔记视图">
+      <button class="seg__btn" type="button" aria-current="page">这个账号</button>
+      <button class="seg__btn" type="button">我标注过的</button>
+      <button class="seg__btn" type="button">全部收藏</button>
+    </div>
+
+    <div class="notecards mt-md" data-note-grid>
+      <a class="notecard" href="./reader.html" data-note-owner="花扑Huapu" data-note-domain="串珠领域" data-note-direction="做手链的" data-has-note="true">
+        <img class="notecard__cover" src="./assets/img/note-lanjing.jpg" alt="浅蓝色蓝水晶珠手链，被手指提起，暖木色桌面" width="480" height="640">
+        <p class="notecard__title">安静的蓝调色 淡淡的天空蓝</p>
+        <p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="22" height="22">花扑HUAPU<span>62</span></p>
+        <div class="notecard__tags"><span class="tag tag--live">配色参考</span><span class="tag tag--live">待复刻</span></div>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="花扑Huapu" data-note-domain="串珠领域" data-note-direction="做手链的" data-has-note="false">
+        <img class="notecard__cover" src="./assets/img/note-suyin.jpg" alt="手腕上叠戴的银色细手镯，冷调自然光" width="480" height="640">
+        <p class="notecard__title">素银叠戴的两种戴法</p>
+        <p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="22" height="22">花扑HUAPU<span>41</span></p>
+        <div class="notecard__tags"><span class="tag tag--live">待复刻</span></div>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="花扑Huapu" data-note-domain="串珠领域" data-note-direction="做手链的" data-has-note="false">
+        <img class="notecard__cover" src="./assets/img/note-baiyu.jpg" alt="白色和田玉珠手链配红绳，浅色亚麻布上" width="480" height="640">
+        <p class="notecard__title">和田白玉配绳收尾</p>
+        <p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="22" height="22">花扑HUAPU<span>28</span></p>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="花扑Huapu" data-note-domain="串珠领域" data-note-direction="做手链的" data-has-note="false">
+        <img class="notecard__cover" src="./assets/img/note-yuan.jpg" alt="浅蓝色蓝晶原矿块，摆在米色石板上" width="480" height="640">
+        <p class="notecard__title">蓝晶原矿开箱 这一批很干净</p>
+        <p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="22" height="22">花扑HUAPU<span>93</span></p>
+        <div class="notecard__tags"><span class="tag tag--live">配色参考</span></div>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="花扑Huapu" data-note-domain="串珠领域" data-note-direction="ins 风" data-has-note="false">
+        <img class="notecard__cover" src="./assets/img/note-zhenzhu.jpg" alt="一串白色淡水珍珠，摊在浅粉色丝绸布上" width="480" height="640">
+        <p class="notecard__title">一串珍珠，配绳换了两次</p>
+        <p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="22" height="22">花扑HUAPU<span>37</span></p>
+        <div class="notecard__tags"><span class="tag tag--live">待复刻</span></div>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="花扑Huapu" data-note-domain="串珠领域" data-note-direction="ins 风" data-has-note="true">
+        <img class="notecard__cover" src="./assets/img/note-zijingshui.jpg" alt="一串半透明淡紫色紫水晶珠，摆在深色石板上" width="480" height="640">
+        <p class="notecard__title">紫水晶的一百种串法</p>
+        <p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="22" height="22">花扑HUAPU<span>24</span></p>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="白玉小铺" data-note-domain="串珠领域" data-note-direction="做手链的" data-has-note="false" hidden>
+        <img class="notecard__cover" src="./assets/img/note-baiyu.jpg" alt="白色和田玉珠手链配红绳，浅色亚麻布上" width="480" height="640">
+        <p class="notecard__title">白玉珠串的日常搭配</p><p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-baiyu.jpg" alt="" width="22" height="22">白玉小铺<span>36</span></p>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="白玉小铺" data-note-domain="串珠领域" data-note-direction="做手链的" data-has-note="true" hidden>
+        <img class="notecard__cover" src="./assets/img/note-suyin.jpg" alt="手腕上叠戴的银色细手镯，冷调自然光" width="480" height="640">
+        <p class="notecard__title">素银与白玉的三种叠戴</p><p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-baiyu.jpg" alt="" width="22" height="22">白玉小铺<span>18</span></p>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="白玉小铺" data-note-domain="串珠领域" data-note-direction="做手链的" data-has-note="false" hidden>
+        <img class="notecard__cover" src="./assets/img/note-zhenzhu.jpg" alt="一串白色淡水珍珠，摊在浅粉色丝绸布上" width="480" height="640">
+        <p class="notecard__title">珍珠配绳的尺寸选择</p><p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-baiyu.jpg" alt="" width="22" height="22">白玉小铺<span>22</span></p>
+      </a>
+      <a class="notecard" href="./reader.html" data-note-owner="晶石记事" data-note-domain="串珠领域" data-note-direction="蓝色水晶" data-has-note="true" hidden>
+        <img class="notecard__cover" src="./assets/img/note-yuan.jpg" alt="浅蓝色蓝晶原矿块，摆在米色石板上" width="480" height="640">
+        <p class="notecard__title">蓝晶原矿的纹理与净度</p><p class="notecard__meta"><img class="node__avatar" src="./assets/img/avatar-jing-shi.jpg" alt="" width="22" height="22">晶石记事<span>57</span></p>
+        <div class="notecard__tags"><span class="tag tag--live">原矿参考</span></div>
+      </a>
+    </div>
+    <p class="notes__empty" data-notes-empty hidden>这个分类还没有笔记。展开其他方向，或从已打开的小红书页面收藏。</p>
+  </section>
+
+</div>
+</body>
+</html>

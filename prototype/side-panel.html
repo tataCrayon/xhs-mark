@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>红笺 · 侧边栏原型</title>
+<meta name="description" content="小红书页面整理器的 Chrome 侧边栏原型，把打开的小红书页面按领域、方向、账号收进一棵树。">
+<link rel="stylesheet" href="./app.css">
+</head>
+<body class="page">
+<div class="stage">
+
+  <aside class="panel" aria-label="红笺侧边栏">
+
+    <header class="topbar">
+      <p class="brand">红笺</p>
+      <div class="search">
+        <label class="visually-hidden" for="q-panel">搜索账号、笔记或批注</label>
+        <svg class="search__icon" viewBox="0 0 16 16" aria-hidden="true">
+          <circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+          <path d="M10.4 10.4 L14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+        <input class="search__input" id="q-panel" type="search" placeholder="搜索账号、笔记或批注" autocomplete="off">
+      </div>
+      <button class="icon-btn" type="button" aria-label="打开管理页">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M9.5 2.5h4v4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M13.5 2.5 L8 8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+          <path d="M12 9.6v3a1 1 0 0 1-1 1H3.9a1 1 0 0 1-1-1V4.9a1 1 0 0 1 1-1h3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </header>
+
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="视图">
+        <button class="seg__btn" type="button" aria-current="page">全部</button>
+        <button class="seg__btn" type="button">有批注</button>
+        <button class="seg__btn" type="button">未归档</button>
+      </div>
+    </div>
+
+    <div class="panel__tree">
+      <ul class="tree" role="tree" aria-label="小红书页面树">
+
+        <li role="treeitem" aria-expanded="true">
+          <div class="node node--domain">
+            <button class="node__twisty" type="button" aria-expanded="true" aria-label="折叠 串珠领域">
+              <svg viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <span class="node__name">串珠领域</span>
+            <span class="node__count num">7 篇</span>
+          </div>
+          <ul role="group">
+
+            <li role="treeitem" aria-expanded="true">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="true" aria-label="折叠 做手链的">
+                  <svg viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <span class="node__name">做手链的</span>
+                <span class="node__count num">3 篇</span>
+              </div>
+              <ul role="group">
+
+                <li role="treeitem" aria-expanded="true">
+                  <div class="node node--account">
+                    <span class="node__id"><img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="22" height="22">花扑HUAPU</span>
+                    <span class="node__tab node__tab--live">2 个标签页</span>
+                  </div>
+                  <ul role="group">
+                    <li role="treeitem">
+                      <div class="node node--note is-selected">
+                        <span class="node__name">安静的蓝调色 淡淡的天空蓝</span>
+                        <span class="tag tag--live">有批注</span>
+                      </div>
+                    </li>
+                    <li role="treeitem">
+                      <div class="node node--note">
+                        <span class="node__name">素银叠戴的两种戴法</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+                <li role="treeitem">
+                  <div class="node node--account">
+                    <span class="node__id"><img class="node__avatar" src="./assets/img/avatar-baiyu.jpg" alt="" width="22" height="22">白玉小铺</span>
+                    <span class="node__tab">1 个标签页</span>
+                  </div>
+                  <ul role="group">
+                    <li role="treeitem">
+                      <div class="node node--note">
+                        <span class="node__name">和田白玉配绳收尾</span>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+            </li>
+
+            <li role="treeitem">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 蓝色水晶">
+                  <svg viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <span class="node__name">蓝色水晶</span>
+                <span class="node__count num">1 篇</span>
+              </div>
+            </li>
+
+            <li role="treeitem">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 中国风">
+                  <svg viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <span class="node__name">中国风</span>
+                <span class="node__count num">1 篇</span>
+              </div>
+            </li>
+
+            <li role="treeitem">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 ins 风">
+                  <svg viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <span class="node__name">ins 风</span>
+                <span class="node__count num">1 篇</span>
+              </div>
+            </li>
+
+            <li role="treeitem">
+              <div class="node node--direction">
+                <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 水晶运营">
+                  <svg viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <span class="node__name">水晶运营</span>
+                <span class="node__count num">1 篇</span>
+              </div>
+            </li>
+
+          </ul>
+        </li>
+
+        <li role="treeitem" aria-expanded="false">
+          <div class="node node--domain">
+            <button class="node__twisty" type="button" aria-expanded="false" aria-label="展开 金融投资">
+              <svg viewBox="0 0 12 12" aria-hidden="true">
+                <path d="M4 2.5 L7.5 6 L4 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <span class="node__name">金融投资</span>
+            <span class="node__count num">3 篇</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+    <section class="panel__editor" aria-label="选中笔记">
+      <img class="panel__cover" src="./assets/img/note-lanjing.jpg" alt="" width="48" height="64">
+      <div>
+        <h1>安静的蓝调色 淡淡的天空蓝</h1>
+        <p class="panel__note">花扑HUAPU · 她的配线留了 2cm 余量。</p>
+        <div class="chips mt-sm">
+          <span class="tag tag--live">有批注</span>
+          <span class="tag">配色参考</span>
+          <button class="chip" type="button">在管理页打开</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="rail">
+      <span class="rail__text">活跃标签页 12 / 15</span>
+      <span class="rail__meter" role="img" aria-label="活跃标签页 12 个，上限 15 个">
+        <span class="rail__fill rail__fill--12"></span>
+      </span>
+      <button class="btn btn--quiet" type="button">归档最久未用</button>
+    </footer>
+
+  </aside>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "requests": [
+    {
+      "prompt": "Xiaohongshu style vertical product photo: a white Hetian jade bead bracelet with a red silk cord laid on a light linen cloth, soft warm daylight, minimal styling, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-baiyu.png"
+    },
+    {
+      "prompt": "Xiaohongshu style vertical product photo: raw pale blue aquamarine crystal geode chunks arranged on a beige stone slab, mineral collector mood, soft directional daylight, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-yuan.png"
+    },
+    {
+      "prompt": "Xiaohongshu style vertical product photo: a Chinese style red and gold twisted silk cord bracelet with a small carved jade pendant resting on dark wood, traditional Chinese aesthetic, soft side light, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-chanhua.png"
+    },
+    {
+      "prompt": "Xiaohongshu style vertical photo: a silicon semiconductor wafer with iridescent blue and violet reflections held up against a soft dark background, clean technology aesthetic, soft directional studio light, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-jingji.png"
+    },
+    {
+      "prompt": "Xiaohongshu style vertical photo: a row of empty clear glass bottles on a wooden shelf in warm late afternoon light, minimal composition, quiet domestic mood, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-xiaofei.png"
+    }
+  ]
+}

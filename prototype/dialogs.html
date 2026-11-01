@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>红笺 · 弹窗与菜单原型</title>
+<meta name="description" content="红笺的管理操作界面原型：新建分类、删除确认、标签选择、批量操作、右键菜单、导入、设置与反馈提示。">
+<link rel="stylesheet" href="./app.css">
+</head>
+<body class="page">
+
+<header class="topbar">
+  <p class="brand">红笺</p>
+  <span class="topbar__spacer"></span>
+  <span class="toolbar__label">弹窗与菜单原型</span>
+</header>
+
+<div class="sheet">
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">新建分类</h2>
+    <p class="sheet__note">领域和方向用同一个对话框，层级靠「放在哪个下面」决定。</p>
+    <div class="sheet__stage">
+      <dialog class="dlg dlg--inline" open>
+        <div class="dlg__head">
+          <h3 class="dlg__title">新建一个方向</h3>
+        </div>
+        <div class="dlg__body">
+          <div class="field">
+            <label class="field__label" for="dlg-parent">放在哪个领域下面</label>
+            <select class="input" id="dlg-parent">
+              <option>串珠领域</option>
+              <option>金融投资</option>
+            </select>
+          </div>
+          <div class="field mt-md">
+            <label class="field__label" for="dlg-name">名字</label>
+            <input class="input input--line" id="dlg-name" type="text" placeholder="比如：银饰叠戴" autocomplete="off">
+            <span class="field__help">同名会提示合并，不会重复建。</span>
+          </div>
+        </div>
+        <div class="dlg__foot">
+          <button class="btn btn--quiet" type="button">取消</button>
+          <button class="btn" type="button">创建</button>
+        </div>
+      </dialog>
+    </div>
+  </section>
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">删除确认</h2>
+    <p class="sheet__note">不可逆的动作要用户把名字打出来，其余都太容易点错。</p>
+    <div class="sheet__stage">
+      <dialog class="dlg dlg--inline" open>
+        <div class="dlg__head">
+          <h3 class="dlg__title">删除「花扑HUAPU」？</h3>
+        </div>
+        <div class="dlg__body">
+          <p>它下面的 4 篇笔记、批注和标签会一起删掉，这台浏览器里找不回来了。</p>
+          <div class="field mt-md">
+            <label class="field__label" for="dlg-confirm">输入 花扑HUAPU 以确认</label>
+            <input class="input input--line" id="dlg-confirm" type="text" placeholder="花扑HUAPU" autocomplete="off">
+          </div>
+        </div>
+        <div class="dlg__foot">
+          <button class="btn btn--quiet" type="button">取消</button>
+          <button class="btn btn--danger" type="button" disabled>删除</button>
+        </div>
+      </dialog>
+    </div>
+  </section>
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">标签选择</h2>
+    <p class="sheet__note">常用标签点一下就选中，新标签直接改名字。</p>
+    <div class="sheet__stage">
+      <div class="pick">
+        <span class="pick__label">标签</span>
+        <div class="chips">
+          <button class="chip" type="button" aria-pressed="true">配色参考</button>
+          <button class="chip" type="button" aria-pressed="true">待复刻</button>
+          <button class="chip" type="button">灵感</button>
+          <button class="chip" type="button">配绳</button>
+          <button class="chip chip--ghost" type="button">新标签</button>
+        </div>
+        <span class="field__help">新标签会存下来，下次直接出现在这里。</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">批量操作</h2>
+    <p class="sheet__note">按住 ⌘ 多选树里的节点，选中后浮出这一条。</p>
+    <div class="sheet__stage sheet__stage--dark">
+      <div class="bulkbar">
+        <span class="bulkbar__count">已选 3 项</span>
+        <button class="btn btn--quiet" type="button">移动到…</button>
+        <button class="btn btn--quiet" type="button">加标签</button>
+        <button class="btn btn--quiet" type="button">归档</button>
+        <button class="btn btn--quiet" type="button">删除</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">树的右键菜单</h2>
+    <p class="sheet__note">所有管理动作都在这里，键盘能走同样的一套。</p>
+    <div class="sheet__stage sheet__stage--dark">
+      <div class="menu" role="menu">
+        <button class="menu__item" type="button">重命名</button>
+        <button class="menu__item" type="button">移动到…</button>
+        <button class="menu__item" type="button">加标签</button>
+        <button class="menu__item" type="button">复制链接</button>
+        <div class="menu__sep"></div>
+        <button class="menu__item" type="button">写批注</button>
+        <button class="menu__item" type="button">在浏览器中打开</button>
+        <div class="menu__sep"></div>
+        <button class="menu__item menu__item--danger" type="button">删除</button>
+        <button class="menu__item menu__item--danger" type="button">归档</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">导入</h2>
+    <p class="sheet__note">换机器的时候，把 JSON 拖进来就行。</p>
+    <div class="sheet__stage">
+      <dialog class="dlg dlg--inline" open>
+        <div class="dlg__head">
+          <h3 class="dlg__title">导入红笺数据</h3>
+        </div>
+        <div class="dlg__body">
+          <p>选一个之前导出的 JSON 文件，或者直接把内容粘进来。</p>
+          <div class="quickadd__row mt-md">
+            <button class="btn btn--quiet" type="button">选择文件</button>
+            <span class="toolbar__label">rednote-2026-10-31.json</span>
+          </div>
+          <div class="field mt-md">
+            <label class="field__label" for="dlg-paste">或者粘贴内容</label>
+            <textarea class="input" id="dlg-paste" rows="3" placeholder="{ … }"></textarea>
+          </div>
+          <span class="field__help">导入会合并到现有的树上，同名节点会问你保留哪一个。</span>
+        </div>
+        <div class="dlg__foot">
+          <button class="btn btn--quiet" type="button">取消</button>
+          <button class="btn" type="button">导入</button>
+        </div>
+      </dialog>
+    </div>
+  </section>
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">设置</h2>
+    <p class="sheet__note">能调的都在这，默认值都是安全的那一档。</p>
+    <div class="sheet__stage">
+      <dialog class="dlg dlg--inline" open>
+        <div class="dlg__head">
+          <h3 class="dlg__title">设置</h3>
+        </div>
+        <div class="dlg__body">
+          <div class="field">
+            <label class="field__label" for="dlg-limit">活跃标签页上限</label>
+            <input class="input input--line" id="dlg-limit" type="number" value="15" min="5" max="40" step="1">
+            <span class="field__help">超过这个数就自动把最久没用的标签页休眠，页面状态还在。</span>
+          </div>
+          <label class="switch mt-md">
+            <input type="checkbox" checked>
+            <span>自动改写标签页标题</span>
+          </label>
+          <label class="switch mt-sm">
+            <input type="checkbox" checked>
+            <span>打开小红书页面时自动识别账号</span>
+          </label>
+          <div class="field mt-md">
+            <label class="field__label" for="dlg-archive">归档方式</label>
+            <select class="input" id="dlg-archive">
+              <option>休眠（保留页面状态，随时唤醒）</option>
+              <option>关闭标签页（省内存，状态不保留）</option>
+            </select>
+          </div>
+        </div>
+        <div class="dlg__foot">
+          <button class="btn" type="button">完成</button>
+        </div>
+      </dialog>
+    </div>
+  </section>
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">反馈</h2>
+    <p class="sheet__note">看得见的结果就不再弹提示条，只在看不见的地方才提示。</p>
+    <div class="sheet__stage sheet__stage--dark">
+      <div style="display: grid; gap: var(--space-sm); justify-items: start;">
+        <div class="toast toast--done">已收藏到 串珠领域 / 做手链的</div>
+        <div class="toast">已改写 2 个标签页标题</div>
+        <div class="toast">没读到内容，小红书可能要重新登录</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet__group">
+    <h2 class="sheet__title">键盘</h2>
+    <p class="sheet__note">整套管理动作都有快捷键，熟了就完全不用鼠标。</p>
+    <div class="sheet__stage">
+      <div class="menu" role="menu">
+        <button class="menu__item" type="button">搜索所有<span class="menu__key">⌘K</span></button>
+        <button class="menu__item" type="button">新建分类<span class="menu__key">⌘N</span></button>
+        <button class="menu__item" type="button">收藏当前页面<span class="menu__key">⌘D</span></button>
+        <button class="menu__item" type="button">收起侧边栏<span class="menu__key">⌘\</span></button>
+        <div class="menu__sep"></div>
+        <button class="menu__item" type="button">上一个笔记<span class="menu__key">左方向键</span></button>
+        <button class="menu__item" type="button">下一个笔记<span class="menu__key">右方向键</span></button>
+        <button class="menu__item" type="button">保存批注<span class="menu__key">⌘↵</span></button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

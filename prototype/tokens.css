@@ -1,0 +1,73 @@
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: custom
+ * paper: oklch(99% 0.006 285) · accent: oklch(64.2% 0.244 22) · display: PingFang SC · body: PingFang SC
+ * nav: a tinted top well, wordmark on a red edge bar, one search, one action · signature: the tree row that shows the title it writes into the browser tab · states: loading, empty, error, full
+ * brand: 小红书 Xiaohongshu (spec 2026-10-31) · axes: light/grotesk-sans/warm · posture: restrained · contrast: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R5 V4 · weakest: P, a tree tool could feel like any bookmark manager; answered by letting the tab-title row sit inside the tree itself, which no bookmark manager shows */
+
+:root {
+  /* space — craft.md § 3 */
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+
+  /* type — app scale, ratio 1.2 from 14px */
+  --text-xs: 0.75rem; --text-sm: 0.8125rem; --text-md: 0.875rem; --text-lg: 1rem;
+  --text-xl: 1.1875rem; --text-2xl: 1.4375rem; --text-3xl: 1.75rem;
+  --text-display-s: 1.4375rem; --text-display: 1.75rem; --text-section: 1.1875rem; --text-title: 1rem; --text-lead: 1rem;
+
+  /* motion — craft.md § 5 */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+
+  /* surfaces — Xiaohongshu neutrals, a translucent-black family at hue 285 */
+  --color-paper: oklch(99% 0.006 285);
+  --color-paper-2: oklch(97% 0.007 285);
+  --color-paper-3: oklch(95% 0.008 285);
+  --color-paper-4: oklch(91.5% 0.009 285);
+  --color-rule: oklch(90% 0.009 285);
+  --color-rule-strong: oklch(83% 0.010 285);
+
+  /* ink */
+  --color-ink: oklch(21.6% 0.010 285);
+  --color-ink-2: oklch(36% 0.010 285);
+  --color-ink-3: oklch(44% 0.010 285);
+  --color-muted: oklch(50% 0.010 285);
+
+  /* accent — two reds, two jobs.
+     brand = the exact Xiaohongshu #FF2442, for markers, the focus ring and fills that carry no text.
+     accent = a deeper step of the same hue, for fills that do carry text; white on it clears 4.5:1. */
+  --color-brand: oklch(64.2% 0.244 22);
+  --color-accent: oklch(54% 0.20 21);
+  --color-accent-ink: oklch(99% 0.006 285);
+  --color-accent-soft: oklch(96.5% 0.018 22);
+  --color-focus: oklch(54% 0.20 21);
+
+  --color-error: oklch(48% 0.16 27);
+  --color-error-soft: oklch(96% 0.02 27);
+  --color-success: oklch(45% 0.10 150);
+  --color-success-soft: oklch(96% 0.02 150);
+
+  /* layout */
+  --container: 1520px; --gutter: 32px; --gap-columns: 32px; --measure: 72ch;
+  --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+
+  /* typefaces — one family, the brand's own */
+  --font-display: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --font-body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --font-outlier: var(--font-body);
+
+  /* radii — the brand's ladder */
+  --radius-card: 12px; --radius-panel: 16px; --radius-input: 8px; --radius-row: 8px; --radius-pill: 999px;
+  --rule-hair: 1px; --shadow-card: none;
+  --shadow-raised: 0 1px 2px oklch(20% 0.01 285 / 0.06);
+  --shadow-fab: 0 4px 16px oklch(20% 0.02 285 / 0.16);
+  --shadow-float: 0 8px 32px oklch(20% 0.02 285 / 0.14);
+  --shadow-dialog: 0 12px 40px oklch(20% 0.02 285 / 0.18);
+  --shadow-menu: 0 8px 24px oklch(20% 0.02 285 / 0.12);
+  --shadow-bulk: 0 6px 20px oklch(20% 0.02 285 / 0.2);
+  --color-backdrop: oklch(20% 0.02 285 / 0.36);
+  --color-on-ink: oklch(88% 0.01 285 / 0.4);
+  --color-on-ink-soft: oklch(88% 0.01 285 / 0.16);
+  --color-on-success: oklch(99% 0.006 285);
+
+  --tracking-display: -0.02em;
+}

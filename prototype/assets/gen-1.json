@@ -1,0 +1,34 @@
+{
+  "requests": [
+    {
+      "prompt": "A circular social media avatar for a Chinese crystal jewelry studio. Centered on a warm ivory beige background is a minimal black ink brand logo of two sharp mountain peaks above a small stylized plum blossom, with the Chinese characters HUAPU brushed in elegant black calligraphy underneath. Flat clean vector-like brand mark, strong contrast, no photo texture, no gradient.",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "output_file": "avatar-huapu.png"
+    },
+    {
+      "prompt": "A circular social media avatar for a Chinese jade jewelry shop. A single smooth white Hetian jade bead resting on a muted celadon green background, minimal flat brand mark, soft diffused natural light, centered composition, no text.",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "output_file": "avatar-baiyu.png"
+    },
+    {
+      "prompt": "A circular social media avatar for a crystal mineral journal. A rough pale blue aquamarine crystal cluster sitting on a soft grey stone surface, natural daylight, minimal centered composition, no text.",
+      "aspect_ratio": "1:1",
+      "resolution": "1K",
+      "output_file": "avatar-jing-shi.png"
+    },
+    {
+      "prompt": "Xiaohongshu style vertical product photo: a fair-skinned hand holding up a translucent pale sky-blue aquamarine crystal bead bracelet, warm beige wooden table background, soft diffused daylight, shallow depth of field, airy and clean, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-lanjing.png"
+    },
+    {
+      "prompt": "Xiaohongshu style vertical product photo: three thin stacked silver bangles worn on a wrist, cool bright natural light, pale grey linen background, minimal jewelry styling, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-suyin.png"
+    }
+  ]
+}

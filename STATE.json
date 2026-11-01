@@ -1,0 +1,120 @@
+{
+  "project": {
+    "name": "红笺 / RedNote Board",
+    "summary": "Chrome 扩展，把开着的小红书页面按「领域→方向→账号→笔记」收进可编辑的树，收藏时即改写标签页标题，数据只存本地",
+    "started": "2026-10-31",
+    "updated": "2026-10-31",
+    "stage": "research+requirements+prototype done, implementation not started"
+  },
+  "positioning": {
+    "kind": "local tab manager, NOT a scraper",
+    "rationale": "用户明确要求；也是合规风险的全部来源",
+    "hard_rules": [
+      "无「一键采集/批量抓取」入口",
+      "无定时任务、无后台轮询、无自动翻页",
+      "不逆向平台接口签名，不模拟下载",
+      "只读取 DOM 已渲染的可见文本",
+      "数据 100% 存本地",
+      "产品名与描述不出现「采集/爬取/批量」"
+    ],
+    "residual_risk": "用户服务协议 4.1 字面覆盖一切第三方插件；缓解来自行为特征而非声明 → 先自用不上架"
+  },
+  "data_source": {
+    "chosen": "解析用户已打开页面的可见 DOM",
+    "rejected": [
+      "小红书开放平台（个人开发者无读笔记权限，QPS 默认 1）",
+      "第三方数据 API（商业分发责任转移不掉）"
+    ],
+    "warning": "网传「开放平台 /api/v1/note/detail，QPS=5，日限 5000」未能在官方文档验证，是编的，不要用"
+  },
+  "research": {
+    "similar_extensions": [
+      { "name": "小红书研究助手", "crx": "nmigddbcnkbhnbofijhiojgggojebodc", "take": "主页/笔记字段抽取方案" },
+      { "name": "小红书导出", "crx": "gmcjgkplniddkknggkponnpgklagbkaj", "take": "笔记元数据字段清单" },
+      { "name": "小红书笔记剪藏", "crx": "dfkipdgjifnfihnnfaiclalbglgccoig", "take": "单页剪藏落盘" },
+      { "name": "Kiwi Pin", "repo": "Yet-Another-AI-Project/kiwi-pin", "take": "唯一开源，技术栈直接抄" },
+      { "name": "Bookmark Recall", "crx": "ipagflallalcldbonhafeffkcnndjlmj", "take": "多对多分类模型" }
+    ],
+    "tree_ui_references": ["Tree Style Tab", "Sidebery", "OneTab", "Workona", "Toby", "GoPeek", "Session Buddy"]
+  },
+  "prototype": {
+    "screens": [
+      { "file": "prototype/side-panel.html", "role": "侧边栏 400px，速览与归位，不写批注" },
+      { "file": "prototype/manager.html", "role": "管理页三栏：树 360 | 账号详情 380 | 收藏的笔记 1fr" },
+      { "file": "prototype/reader.html", "role": "插件内阅读器，左图右文，面包屑与翻页闭环在插件内" },
+      { "file": "prototype/inject.html", "role": "小红书页内注入层：右下角收藏按钮 + 收藏面板 + 账号收藏按钮" },
+      { "file": "prototype/dialogs.html", "role": "弹窗与菜单：新建/删除确认/标签/批量条/右键菜单/导入/设置/反馈/快捷键" },
+      { "file": "prototype/states.html", "role": "状态预览：四态 + 八态 + 输入框六态" }
+    ],
+    "styles": ["prototype/tokens.css", "prototype/base.css", "prototype/app.css"],
+    "assets": {
+      "dir": "prototype/assets/img",
+      "count": 12,
+      "breakdown": "3 账号头像 + 9 笔记封面，180×180 / 480×640",
+      "regenerate": "prototype/assets/gen-*.json 提示词 + resize.ps1"
+    }
+  },
+  "design_system": {
+    "source": "机械抓取 xiaohongshu.com 首页与同源 CSS，不是凭感觉",
+    "evidence": ".hallmark/brand-spec.md",
+    "brand_red": "oklch(64.2% 0.244 22) = #FF2442",
+    "accent_red": "oklch(54% 0.20 21)",
+    "red_rule": "brand 只用在不带文字处（焦点环/竖条/进度条/选中标记）；accent 用在承载白字处",
+    "neutrals": "oklch(… 0.006–0.010 285)，来自 rgba(48,48,52,.05/.10/.15/.20)",
+    "paper": "oklch(99% / 97% / 95%)",
+    "font": "PingFang SC，400/500/600",
+    "radii": [999, 16, 12, 8],
+    "spacing": "竖 16 / 横 32，紧凑 12 / 24"
+  },
+  "closed_loop": [
+    "① 发现：小红书刷到想抄的笔记",
+    "② 收藏：页内注入层面板，归类默认选中上次位置，批注可留空",
+    "③ 落地：树里多节点 + 标签页标题被改写 + Toast",
+    "④ 速览：侧边栏树 + 最近收藏",
+    "⑤ 深读：阅读器像网页一样读 + 就地批注 + ←→ 翻页",
+    "⑥ 整理：管理页拖拽归位 / 重命名 / 批量移动 / 删除",
+    "⑦ 带走：导出 JSON / Markdown"
+  ],
+  "tech_stack": {
+    "manifest": "V3",
+    "framework": "React + TypeScript + Vite + Zustand",
+    "tree_component": "AntD Tree / Tree.DirectoryTree",
+    "permissions": ["storage", "tabs", "sidePanel", "scripting", "host_permissions: xiaohongshu.com"],
+    "forbidden_permissions": ["cookies"],
+    "storage": "chrome.storage.local 存树与批注；IndexedDB 存图片缓存"
+  },
+  "milestones": [
+    { "id": "M0", "name": "骨架", "done": false },
+    { "id": "M1", "name": "识别（DOM 解析）", "done": false, "blocker": "小红书页面能否稳定取到头像/昵称/小红书号/封面 URL 未验证" },
+    { "id": "M2", "name": "归位 + 标题改写", "done": false, "note": "优先做，这是核心价值" },
+    { "id": "M3", "name": "账号卡", "done": false },
+    { "id": "M4", "name": "笔记卡与筛选", "done": false },
+    { "id": "M5", "name": "阅读器", "done": false },
+    { "id": "M5.5", "name": "注入层", "done": false },
+    { "id": "M5.8", "name": "管理与弹窗", "done": false },
+    { "id": "M6", "name": "标注与搜索", "done": false },
+    { "id": "M7", "name": "LRU", "done": false },
+    { "id": "M8", "name": "导入导出", "done": false },
+    { "id": "M9", "name": "AI 辅助分类（可选）", "done": false }
+  ],
+  "open_questions": [
+    { "id": "D1", "q": "是否上架 Chrome 商店", "recommendation": "先自用，不上架" },
+    { "id": "D2", "q": "多账号登录态怎么隔离", "recommendation": "移出本项目范围，插件不碰 Cookie；注意多 Profile 间 storage.local 隔离会导致树分裂" },
+    { "id": "D3", "q": "要不要 AI 辅助分类", "recommendation": "先不做" },
+    { "id": "D4", "q": "注入层归类默认值是否可靠（取决于用户是否跨领域乱刷）", "impact": "可能需要重做 inject.html 的面板" }
+  ],
+  "quality_gate": {
+    "tool": "hallmark sloplint",
+    "command": "node .agents/skills/hallmark/scripts/sloplint.mjs prototype --scope app --genre modern-minimal --render",
+    "requires": ["node 18+", "npm i -g puppeteer-core", "CHROME_PATH", "NODE_PATH"],
+    "current": "clean. 0 FAIL, 0 REFLEX, 0 WARN across 9 file(s)",
+    "screenshots": "prototype/.hallmark/shots"
+  },
+  "files": {
+    "handoff": "HANDOFF.md",
+    "requirements": "小红书树状管理插件-需求文档.md",
+    "state": "STATE.json",
+    "brand_evidence": ".hallmark/brand-spec.md",
+    "design_log": ".hallmark/log.json"
+  }
+}

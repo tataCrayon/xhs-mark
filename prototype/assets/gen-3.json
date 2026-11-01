@@ -1,0 +1,16 @@
+{
+  "requests": [
+    {
+      "prompt": "Xiaohongshu style vertical product photo: a strand of round white freshwater pearl beads coiled on a pale pink silk cloth, soft diffused daylight, minimal jewelry styling, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-zhenzhu.png"
+    },
+    {
+      "prompt": "Xiaohongshu style vertical product photo: a bracelet of translucent pale purple amethyst beads resting on a dark slate surface, moody soft side light, minimal styling, natural phone camera look, no text, no watermark",
+      "aspect_ratio": "3:4",
+      "resolution": "1K",
+      "output_file": "note-zijingshui.png"
+    }
+  ]
+}

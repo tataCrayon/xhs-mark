@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>红笺 · 状态预览</title>
+<meta name="description" content="红笺管理页的四种数据状态与控件八态预览，供实现时对照。">
+<link rel="stylesheet" href="./app.css">
+</head>
+<body class="page">
+
+<header class="topbar">
+  <p class="brand">红笺</p>
+  <span class="topbar__spacer"></span>
+  <span class="toolbar__label">状态预览</span>
+</header>
+
+<div class="workbench workbench--single">
+
+  <article class="detail">
+
+    <h1 class="detail__title">状态预览</h1>
+    <p class="detail__path">每个会加载数据的区域，都要有这四种状态。</p>
+
+    <div class="block">
+      <h2 class="block__head">树区域的四种状态</h2>
+      <div class="preview">
+
+        <div class="state">
+          <span class="state__label">加载中</span>
+          <div class="skel skel--w70"></div>
+          <div class="skel skel--w40"></div>
+          <div class="skel skel--w70"></div>
+          <div class="skel skel--w40"></div>
+        </div>
+
+        <div class="state">
+          <span class="state__label">空</span>
+          <p class="state__empty">还没有账号。打开一个小红书页面，它会自己出现在这里。</p>
+          <div class="chips">
+            <button class="btn" type="button">打开小红书</button>
+          </div>
+        </div>
+
+        <div class="state">
+          <span class="state__label">出错</span>
+          <p class="state__error">这个页面没读到内容。小红书可能要求重新登录，或者页面还在加载。</p>
+          <div class="chips">
+            <button class="btn btn--quiet" type="button">重试</button>
+          </div>
+        </div>
+
+        <div class="state">
+          <span class="state__label">完整</span>
+          <ul class="tree">
+            <li>
+              <div class="node node--domain">
+                <span class="node__name">串珠领域</span>
+                <span class="node__count num">7 篇</span>
+              </div>
+              <ul>
+                <li>
+                  <div class="node node--account">
+                    <span class="node__id"><img class="node__avatar" src="./assets/img/avatar-huapu.jpg" alt="" width="22" height="22">花扑HUAPU</span>
+                    <span class="node__tab node__tab--live">2 个标签页</span>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="block">
+      <h2 class="block__head">按钮的八种状态</h2>
+      <div class="preview">
+
+        <div class="preview__cell">
+          <span class="preview__name">默认</span>
+          <div><button class="btn" type="button">写回标签页</button></div>
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">悬停</span>
+          <div><button class="btn is-hover" type="button">写回标签页</button></div>
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">聚焦</span>
+          <div><button class="btn is-focus" type="button">写回标签页</button></div>
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">按下</span>
+          <div><button class="btn is-active" type="button">写回标签页</button></div>
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">禁用</span>
+          <div><button class="btn" type="button" disabled>写回标签页</button></div>
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">加载中</span>
+          <div><button class="btn" type="button" aria-busy="true"><span class="spinner" aria-hidden="true"></span>写回标签页</button></div>
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">出错</span>
+          <div><button class="btn btn--danger" type="button">写回标签页</button></div>
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">成功</span>
+          <div><button class="btn btn--done" type="button">已写回标签页</button></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="block">
+      <h2 class="block__head">输入框的状态</h2>
+      <div class="preview">
+
+        <div class="preview__cell">
+          <span class="preview__name">默认</span>
+          <input class="input input--line" type="text" value="" aria-label="示例输入框">
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">悬停</span>
+          <input class="input input--line is-hover" type="text" value="" aria-label="示例输入框">
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">聚焦</span>
+          <input class="input input--line is-focus" type="text" value="" aria-label="示例输入框">
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">已填写</span>
+          <input class="input input--line" type="text" value="蓝水晶串珠搭配" aria-label="示例输入框">
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">禁用</span>
+          <input class="input input--line" type="text" value="蓝水晶串珠搭配" aria-label="示例输入框" disabled>
+        </div>
+
+        <div class="preview__cell">
+          <span class="preview__name">出错</span>
+          <input class="input input--line" type="text" value="蓝水晶串珠搭配" aria-label="示例输入框" aria-invalid="true" aria-describedby="err-sample">
+          <span class="field__help field__help--error" id="err-sample">这条批注太长了，删掉一部分再保存。</span>
+        </div>
+
+      </div>
+    </div>
+
+  </article>
+
+</div>
+</body>
+</html>

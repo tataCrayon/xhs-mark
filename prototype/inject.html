@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>红笺 · 小红书页内注入层原型</title>
+<meta name="description" content="红笺在小红书网页上的注入层原型：收藏按钮、收藏面板、账号收藏按钮，用来把刷到的东西一键收进红笺。">
+<link rel="stylesheet" href="./app.css">
+</head>
+<body class="page">
+
+<div class="hostpage">
+
+  <header class="topbar">
+    <p class="brand">红笺</p>
+    <span class="topbar__spacer"></span>
+    <span class="toolbar__label">注入层原型 · 宿主页为模拟</span>
+  </header>
+
+  <main class="host">
+
+    <div class="host__bar">
+      <span>小红书</span>
+      <span>发现</span>
+      <span>关注</span>
+      <span>视频</span>
+      <span>我</span>
+    </div>
+
+    <div class="host__body">
+      <img class="host__cover" src="./assets/img/note-lanjing.jpg" alt="浅蓝色蓝水晶珠手链，被手指提起，暖木色桌面" width="480" height="640">
+
+      <div>
+        <h1 class="host__title">安静的蓝调色 淡淡的天空蓝</h1>
+
+        <div class="host__byline">
+          <img class="avatar avatar--md" src="./assets/img/avatar-huapu.jpg" alt="" width="36" height="36">
+          <b>花扑HUAPU</b>
+          <span class="profile__meta">2026-09-14 发布 · 山东</span>
+          <button class="btn btn--quiet" type="button">收藏这个账号</button>
+        </div>
+
+        <p class="host__text">这串是今年最想复刻的一条。
+
+蓝晶是雾蓝色的，不是那种很冲的蓝，光下会偏一点点灰，配 0.3mm 的银线刚好。线留 2cm 余量绕两圈，手围 15 的姐妹直接照抄就行。
+
+视频里那条是同款，不是我拍得好，是石头本身就很安静。</p>
+
+        <div class="tagrow">
+          <span class="tag">#串珠</span>
+          <span class="tag">#蓝水晶</span>
+          <span class="tag">#手链搭配</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="sheet" style="max-width: 760px; padding-top: 0;">
+    <div class="sheet__group">
+      <h2 class="sheet__title">这条注入层要干的活</h2>
+      <p class="sheet__note">在小红书页面上，红笺只出现两处：右下角一个收藏按钮，和作者旁边一个「收藏这个账号」。两个都是一次性动作，点完就消失。</p>
+      <ul class="menu" style="display: block; padding: var(--space-md);">
+        <li class="menu__item" style="min-height: 28px;">刷到想抄的笔记，一点收藏</li>
+        <li class="menu__item" style="min-height: 28px;">归类默认选中上次用的位置，不用每次重选</li>
+        <li class="menu__item" style="min-height: 28px;">批注可以留空，标签可后补</li>
+        <li class="menu__item" style="min-height: 28px;">收藏完立刻改写这个标签页的标题</li>
+        <li class="menu__item" style="min-height: 28px;">账号页上点「收藏这个账号」，整个号进树</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="capture" role="dialog" aria-label="收藏到红笺">
+
+  <div class="capture__head">
+    <img class="capture__thumb" src="./assets/img/note-lanjing.jpg" alt="" width="44" height="58">
+    <div>
+      <p class="capture__title">安静的蓝调色 淡淡的天空蓝</p>
+      <p class="capture__meta">花扑HUAPU · 笔记</p>
+    </div>
+  </div>
+
+  <div class="pick">
+    <span class="pick__label">归到哪里</span>
+    <div class="pick__tree">
+      <label class="pick__row"><input type="checkbox"><span>串珠领域</span></label>
+      <label class="pick__row pick__row--on"><input type="checkbox" checked><span>做手链的</span></label>
+      <label class="pick__row pick__row--on"><input type="checkbox" checked><span>花扑HUAPU</span></label>
+      <label class="pick__row"><input type="checkbox"><span>蓝色水晶</span></label>
+      <label class="pick__row"><input type="checkbox"><span>中国风</span></label>
+      <label class="pick__row"><input type="checkbox"><span>ins 风</span></label>
+    </div>
+    <span class="field__help">上次用：串珠领域 / 做手链的，已帮你选好</span>
+  </div>
+
+  <div class="pick">
+    <label class="pick__label" for="inject-note">我的批注</label>
+    <textarea class="input" id="inject-note" rows="2" placeholder="可以留空，之后在红笺里补"></textarea>
+  </div>
+
+  <div class="pick">
+    <span class="pick__label">标签</span>
+    <div class="chips">
+      <button class="chip" type="button" aria-pressed="true">配色参考</button>
+      <button class="chip" type="button">加标签</button>
+    </div>
+  </div>
+
+  <div class="capture__foot">
+    <button class="btn btn--quiet" type="button">取消</button>
+    <button class="btn" type="button">收藏</button>
+  </div>
+
+</div>
+
+<button class="fab" type="button">
+  <svg viewBox="0 0 16 16" aria-hidden="true">
+    <path d="M4 3.5h8a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.4"></path>
+    <path d="M8 10.5V6M6 7.5 8 5.5l2 2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  </svg>
+  收藏到红笺
+</button>
+
+</body>
+</html>

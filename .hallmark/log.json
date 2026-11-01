@@ -1,0 +1,125 @@
+[
+ {
+  "shape": "app screen",
+  "scope": "app",
+  "theme": "custom, brand spec 小红书 2026-10-31",
+  "axes": "light/grotesk-sans/warm",
+  "posture": "restrained",
+  "hero": "none, app screen",
+  "nav": "a tinted top well, brand left, search and actions right",
+  "footer": "the panel status rail, a hairline count and one quiet button",
+  "imagery": "12 photographs, generated in Xiaohongshu cover style, 3 avatars and 9 note covers",
+  "photos": "",
+  "entry": "红笺, a local Xiaohongshu page organiser: capture layer on the page, side panel, manager, reader, dialogs",
+  "fingerprint": [
+   "tree-of-accounts",
+   "tab-title-rewrite",
+   "local-annotation",
+   "in-plugin-reader",
+   "three-column-workbench",
+   "capture-overlay"
+  ],
+  "sections": [
+   "inject: host page, floating capture button, capture panel, collect-account button",
+   "side panel: top well, filter row, tree with avatars, selected-note strip, status rail",
+   "manager: quick add, tree card, recent captures, account detail column, collected notes grid",
+   "reader: breadcrumb, picture left and words right, pager, annotation rail",
+   "dialogs: new category, delete confirm, tag picker, bulk bar, context menu, import, settings, toasts, shortcuts",
+   "states: four data states, eight control states, field states"
+  ],
+  "signature": "the tree row that shows the title it writes into the browser tab, and the one-click capture that keeps the user on the page they are reading",
+  "waived": "",
+  "prompt": "浏览器插件，小红书页面树状管理与笔记标注，风格贴近小红书；设计完整闭环，从页内收藏到管理到阅读",
+  "date": "2026-10-31",
+  "mode": "build"
+ },
+ {
+  "shape": "app screen",
+  "scope": "app",
+  "theme": "custom, brand spec 小红书 2026-10-31",
+  "axes": "light/grotesk-sans/warm",
+  "posture": "restrained",
+  "hero": "none, app screen",
+  "nav": "a tinted top well, brand left, search and actions right",
+  "footer": "the panel status rail, a hairline count and one quiet button",
+  "imagery": "12 photographs, generated in Xiaohongshu cover style, 3 avatars and 9 note covers",
+  "photos": "",
+  "entry": "红笺, a local Xiaohongshu page organiser, side panel, manager and reader",
+  "fingerprint": [
+   "tree-of-accounts",
+   "tab-title-rewrite",
+   "local-annotation",
+   "in-plugin-reader",
+   "three-column-workbench"
+  ],
+  "sections": [
+   "side panel: top well, filter row, tree with avatars, selected-note strip, status rail",
+   "manager: quick add, tree column, collected notes grid, account detail column",
+   "reader: breadcrumb, picture left and words right, pager, annotation rail",
+   "states: four data states, eight control states, field states"
+  ],
+  "signature": "the tree row that shows the title it writes into the browser tab, and the note covers that make the collection browsable",
+  "waived": "",
+  "prompt": "浏览器插件，小红书页面树状管理与笔记标注，风格贴近小红书；三栏布局充分利用宽屏",
+  "date": "2026-10-31",
+  "mode": "build"
+ },
+ {
+  "shape": "app screen",
+  "scope": "app",
+  "theme": "custom, brand spec 小红书 2026-10-31",
+  "axes": "light/grotesk-sans/warm",
+  "posture": "restrained",
+  "hero": "none, app screen",
+  "nav": "a tinted top well, wordmark on a red edge bar, one search, one action",
+  "footer": "the panel status rail, a hairline count and one quiet button",
+  "imagery": "10 photographs, generated in Xiaohongshu cover style, 3 avatars and 7 note covers",
+  "photos": "",
+  "entry": "红笺, a local Xiaohongshu page organiser, side panel, manager and reader",
+  "fingerprint": [
+   "tree-of-accounts",
+   "tab-title-rewrite",
+   "local-annotation",
+   "in-plugin-reader"
+  ],
+  "sections": [
+   "side panel: top well, filter row, tree with avatars, selected-note strip, status rail",
+   "manager: quick add, tree column, account card, account annotation, tab titles, note card grid",
+   "reader: breadcrumb, picture left and words right, pager, annotation rail",
+   "states: four data states, eight control states, field states"
+  ],
+  "signature": "the tree row that shows the title it writes into the browser tab, and the note covers that make the tree scannable",
+  "waived": "",
+  "prompt": "浏览器插件，小红书页面树状管理与笔记标注，风格贴近小红书",
+  "date": "2026-10-31",
+  "mode": "build"
+ },
+ {
+  "shape": "app screen",
+  "scope": "app",
+  "theme": "custom, brand spec 小红书 2026-10-31",
+  "axes": "light/grotesk-sans/warm",
+  "posture": "restrained",
+  "hero": "none, app screen",
+  "nav": "a tinted top well, wordmark on a red edge bar, one search, one action",
+  "footer": "the panel status rail, a hairline count and one quiet button",
+  "imagery": "none, a management tool shows no photographs",
+  "photos": "",
+  "entry": "红笺, a local Xiaohongshu page organiser, side panel and manager page",
+  "fingerprint": [
+   "tree-of-accounts",
+   "tab-title-rewrite",
+   "local-annotation"
+  ],
+  "sections": [
+   "side panel: top well, filter row, tree, selected-note strip, status rail",
+   "manager: top well, workbench tree column, note detail, annotation, tab titles",
+   "states: four data states, eight control states, field states"
+  ],
+  "signature": "the tree row that shows the title it writes into the browser tab",
+  "waived": "",
+  "prompt": "浏览器插件，小红书页面树状管理与笔记标注，风格贴近小红书",
+  "date": "2026-10-31",
+  "mode": "build"
+ }
+]
